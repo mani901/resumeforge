@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm i @prisma/client @auth/prisma-adapter next-auth@beta bcryptjs zustand zundo @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities react-hook-form @hookform/resolvers zod ai @ai-sdk/anthropic @ai-sdk/openai @ai-sdk/google puppeteer nanoid lucide-react sonner)",
+      "PowerShell(npm i -D prisma @types/bcryptjs)",
+      "PowerShell($env:PGPASSWORD='postgres'; & psql -U postgres -h localhost -c \"SELECT version\\(\\);\" 2>$null; if \\(-not $?\\) { 'psql-default-failed' }; \\(Get-Command psql -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell($env:PGPASSWORD='rehman'; psql -U postgres -h localhost -c \"SELECT version\\(\\);\"; psql -U postgres -h localhost -c \"CREATE DATABASE resume_maker;\")",
+      "PowerShell($bytes = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Fill\\($bytes\\); [Convert]::ToBase64String\\($bytes\\))",
+      "PowerShell($rng = [Security.Cryptography.RandomNumberGenerator]::Create\\(\\); $bytes = New-Object byte[] 32; $rng.GetBytes\\($bytes\\); [Convert]::ToBase64String\\($bytes\\))"
+    ]
+  }
+}

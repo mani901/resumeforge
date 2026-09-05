@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  name         String?
+  image        String?
+  createdAt    DateTime @default(now())
+
+  accounts     Account[]
+  resumes      Resume[]
+  applications JobApplication[]
+  coverLetters CoverLetter[]
+  aiUsage      AiUsage[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Resume {
+  id         String   @id @default(cuid())
+  userId     String
+  title      String   @default("Untitled Resume")
+  content    Json
+  templateId String   @default("ats-classic")
+  settings   Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  snapshots    ResumeSnapshot[]
+  applications JobApplication[]
+  coverLetters CoverLetter[]
+
+  @@index([userId, updatedAt])
+}
+
+model ResumeSnapshot {
+  id         String   @id @default(cuid())
+  resumeId   String
+  content    Json
+  templateId String
+  settings   Json
+  label      String?
+  createdAt  DateTime @default(now())
+
+  resume       Resume           @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  applications JobApplication[]
+}
+
+enum ApplicationStatus {
+  SAVED
+  APPLIED
+  INTERVIEWING
+  OFFER
+  REJECTED
+}
+
+model JobApplication {
+  id         String            @id @default(cuid())
+  userId     String
+  company    String
+  role       String
+  status     ApplicationStatus @default(SAVED)
+  jobUrl     String?
+  jdText     String?
+  jdKeywords Json?
+  notes      String?
+  resumeId   String?
+  snapshotId String?
+  appliedAt  DateTime?
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resume      Resume?         @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  snapshot    ResumeSnapshot? @relation(fields: [snapshotId], references: [id], onDelete: SetNull)
+  coverLetter CoverLetter?
+
+  @@index([userId, status])
+}
+
+model CoverLetter {
+  id            String   @id @default(cuid())
+  userId        String
+  applicationId String?  @unique
+  resumeId      String?
+  title         String   @default("Untitled Cover Letter")
+  body          String   @default("")
+  templateId    String   @default("ats-classic")
+  settings      Json
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  application JobApplication? @relation(fields: [applicationId], references: [id], onDelete: SetNull)
+  resume      Resume?         @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+
+  @@index([userId, updatedAt])
+}
+
+model AiUsage {
+  id           String   @id @default(cuid())
+  userId       String
+  feature      String
+  provider     String
+  model        String
+  inputTokens  Int
+  outputTokens Int
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}

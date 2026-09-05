@@ -1,0 +1,122 @@
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: var(--page-margin);
+  background: #fff;
+  color: #222;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--line-spacing);
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2pt;
+}
+
+.header {
+  text-align: var(--header-align);
+  padding-bottom: 8pt;
+  border-bottom: 0.75pt solid #ccc;
+}
+
+.name {
+  font-size: 1.9em;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.headline {
+  font-size: 1.05em;
+  color: #444;
+  margin-top: 2pt;
+}
+
+.contact {
+  margin-top: 4pt;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.contactSep {
+  margin: 0 4pt;
+  color: #bbb;
+}
+
+.section {
+  margin-top: var(--section-spacing);
+}
+
+.sectionTitle {
+  font-size: 0.95em;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 5pt;
+}
+
+.item {
+  margin-bottom: 6pt;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8pt;
+}
+
+.itemTitle {
+  font-weight: 650;
+}
+
+.itemSub {
+  color: #444;
+}
+
+.itemDate {
+  white-space: nowrap;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.bullets {
+  list-style: disc;
+  margin: 2pt 0 0;
+  padding-left: 13pt;
+}
+
+.bullets li {
+  margin-bottom: 1.5pt;
+}
+
+.skillRow {
+  margin-bottom: 2pt;
+}
+
+.skillGroup {
+  font-weight: 650;
+}
+
+.summary {
+  white-space: pre-wrap;
+}
+
+.inlineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4pt 14pt;
+}
+
+.summary,
+.bullets li,
+.item p {
+  text-align: justify;
+}

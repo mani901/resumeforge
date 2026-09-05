@@ -1,0 +1,136 @@
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: var(--page-margin);
+  background: #fff;
+  color: #1f2328;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--line-spacing);
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2pt;
+}
+
+.header {
+  border-bottom: 2pt solid var(--accent);
+  padding-bottom: 8pt;
+  text-align: var(--header-align);
+}
+
+.name {
+  font-size: 2.2em;
+  font-weight: 750;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.headline {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-top: 2pt;
+}
+
+.contact {
+  margin-top: 5pt;
+  font-size: 0.9em;
+  color: #4b5563;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3pt 12pt;
+  justify-content: var(--header-align);
+}
+
+.section {
+  margin-top: var(--section-spacing);
+}
+
+.sectionTitle {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 5pt;
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+}
+
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  height: 0.75pt;
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.item {
+  margin-bottom: 6pt;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8pt;
+}
+
+.itemTitle {
+  font-weight: 700;
+}
+
+.itemSub {
+  color: #374151;
+}
+
+.itemDate {
+  white-space: nowrap;
+  font-size: 0.9em;
+  color: #4b5563;
+}
+
+.bullets {
+  list-style: disc;
+  margin: 2pt 0 0;
+  padding-left: 13pt;
+}
+
+.bullets li {
+  margin-bottom: 1.5pt;
+}
+
+.bullets li::marker {
+  color: var(--accent);
+}
+
+.skillRow {
+  margin-bottom: 2pt;
+}
+
+.skillGroup {
+  font-weight: 700;
+}
+
+.summary {
+  white-space: pre-wrap;
+}
+
+.inlineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4pt 14pt;
+}
+
+.summary,
+.bullets li,
+.item p {
+  text-align: justify;
+}

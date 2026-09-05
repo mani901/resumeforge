@@ -1,0 +1,201 @@
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  color: #1f2328;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--line-spacing);
+  box-sizing: border-box;
+  display: flex;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2pt;
+}
+
+.side {
+  width: 62mm;
+  flex-shrink: 0;
+  background: #f3f4f6;
+  padding: var(--page-margin) 7mm;
+  box-sizing: border-box;
+}
+
+.main {
+  flex: 1;
+  padding: var(--page-margin);
+  padding-left: 8mm;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.name {
+  font-size: 2em;
+  font-weight: 750;
+  line-height: 1.12;
+}
+
+.headline {
+  font-size: 1.05em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 2pt;
+}
+
+.contactBlock {
+  margin-top: 8pt;
+  font-size: 0.88em;
+  color: #374151;
+}
+
+.contactBlock p {
+  margin-bottom: 2.5pt;
+  overflow-wrap: anywhere;
+}
+
+/* sidebar section styles */
+.sideSection {
+  margin-top: var(--section-spacing);
+}
+
+.sideSectionTitle {
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+  border-bottom: 1pt solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding-bottom: 2pt;
+  margin-bottom: 4pt;
+}
+
+.sideItem {
+  margin-bottom: 4pt;
+}
+
+.sideItemHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideItemTitle {
+  font-weight: 650;
+}
+
+.sideItemSub {
+  color: #4b5563;
+}
+
+.sideItemDate {
+  font-size: 0.88em;
+  color: #6b7280;
+}
+
+.sideBullets {
+  list-style: disc;
+  margin: 2pt 0 0;
+  padding-left: 12pt;
+}
+
+.sideSkillRow {
+  margin-bottom: 3pt;
+}
+
+.sideSkillGroup {
+  font-weight: 650;
+  display: block;
+}
+
+.sideSummary {
+  white-space: pre-wrap;
+}
+
+.sideInlineList {
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+}
+
+/* main column section styles */
+.section {
+  margin-top: var(--section-spacing);
+}
+
+.section:first-child {
+  margin-top: 0;
+}
+
+.sectionTitle {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  margin-bottom: 5pt;
+}
+
+.item {
+  margin-bottom: 6pt;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8pt;
+}
+
+.itemTitle {
+  font-weight: 700;
+}
+
+.itemSub {
+  color: #374151;
+}
+
+.itemDate {
+  white-space: nowrap;
+  font-size: 0.9em;
+  color: #4b5563;
+}
+
+.bullets {
+  list-style: disc;
+  margin: 2pt 0 0;
+  padding-left: 13pt;
+}
+
+.bullets li {
+  margin-bottom: 1.5pt;
+}
+
+.skillRow {
+  margin-bottom: 2pt;
+}
+
+.skillGroup {
+  font-weight: 700;
+}
+
+.summary {
+  white-space: pre-wrap;
+}
+
+.inlineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4pt 14pt;
+}
+
+.summary,
+.bullets li,
+.item p {
+  text-align: justify;
+}

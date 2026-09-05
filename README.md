@@ -4,6 +4,14 @@
 
 > A full-stack resume maker and job application tracker for developers and job seekers who want more than an ordinary online CV builder.
 
+## 📸 Screenshots
+
+![ResumeForge AI resume builder — editor with live preview](docs/screenshots/resume-builder-1.png)
+
+| | |
+|---|---|
+| ![ResumeForge resume templates and ATS tailoring](docs/screenshots/resume-builder-2.png) | ![ResumeForge job application tracker](docs/screenshots/resume-builder-3.png) |
+
 ## ✨ Features
 
 - **Live resume editor** — all standard resume sections (summary, work experience, education, skills, projects, certifications, languages) plus unlimited custom sections, with drag-and-drop reordering of sections, entries, and bullet points, autosave, undo/redo, and collapsible entries

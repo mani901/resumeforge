@@ -3,7 +3,7 @@
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useEditorStore } from "@/lib/stores/editor-store";
-import { TextareaField } from "@/components/editor/fields";
+import { RichTextarea } from "@/components/editor/rich-textarea";
 import { useAiStream } from "@/components/editor/use-ai-stream";
 import { Button } from "@/components/ui/button";
 
@@ -32,11 +32,11 @@ export function SummaryForm() {
 
   return (
     <div className="space-y-2">
-      <TextareaField
+      <RichTextarea
         rows={4}
         placeholder="2–4 sentences highlighting your experience, strengths, and what you're looking for…"
         value={summary}
-        onChange={(e) => setSummary(e.target.value)}
+        onChangeText={setSummary}
       />
       <Button variant="outline" size="xs" onClick={generate} disabled={streaming}>
         <Sparkles className="mr-1 h-3 w-3 text-violet-500" />

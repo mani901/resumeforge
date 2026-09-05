@@ -107,6 +107,7 @@ export const resumeContentSchema = z.object({
   personal: personalSchema,
   sectionOrder: z.array(sectionIdSchema),
   hiddenSections: z.array(sectionIdSchema).default([]),
+  sectionTitles: z.record(z.string()).default({}),
   sections: z.object({
     summary: z.string().default(""),
     experience: z.array(experienceItemSchema).default([]),
@@ -166,6 +167,7 @@ export function defaultResumeContent(): ResumeContent {
       "custom",
     ],
     hiddenSections: [],
+    sectionTitles: {},
     sections: {
       summary: "",
       experience: [],

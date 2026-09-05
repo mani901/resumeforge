@@ -1,6 +1,6 @@
 .page {
   width: 210mm;
-  min-height: 297mm;
+  min-height: calc(297mm - var(--page-margin) * 2);
   background: #fff;
   color: #1f2328;
   font-family: var(--font-body);
@@ -20,14 +20,13 @@
   width: 62mm;
   flex-shrink: 0;
   background: #f3f4f6;
-  padding: var(--page-margin) 7mm;
+  padding: 0 7mm;
   box-sizing: border-box;
 }
 
 .main {
   flex: 1;
-  padding: var(--page-margin);
-  padding-left: 8mm;
+  padding: 0 var(--page-margin) 0 8mm;
   box-sizing: border-box;
   min-width: 0;
 }

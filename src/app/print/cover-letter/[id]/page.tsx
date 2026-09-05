@@ -28,14 +28,18 @@ export default async function PrintCoverLetterPage({
   const personal = letter.resume
     ? personalSchema.safeParse((letter.resume.content as { personal?: unknown })?.personal)
     : null;
-  const settings = templateSettingsSchema.safeParse(letter.settings);
+  const parsedSettings = templateSettingsSchema.safeParse(letter.settings);
+  const settings = parsedSettings.success ? parsedSettings.data : defaultTemplateSettings();
 
   return (
-    <CoverLetterDoc
-      personal={personal?.success ? personal.data : null}
-      settings={settings.success ? settings.data : defaultTemplateSettings()}
-      body={letter.body}
-      date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-    />
+    <>
+      <style>{`@page { size: A4; margin: ${settings.pageMargin}mm 0; }`}</style>
+      <CoverLetterDoc
+        personal={personal?.success ? personal.data : null}
+        settings={settings}
+        body={letter.body}
+        date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      />
+    </>
   );
 }

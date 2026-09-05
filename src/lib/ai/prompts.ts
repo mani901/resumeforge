@@ -1,5 +1,6 @@
 import type { ResumeContent } from "@/lib/schemas/resume";
 import { formatDateRange } from "@/templates/shared/helpers";
+import { stripInline } from "@/templates/shared/inline";
 
 export function resumeToPlainText(content: ResumeContent): string {
   const { personal, sections } = content;
@@ -10,13 +11,13 @@ export function resumeToPlainText(content: ResumeContent): string {
     .map((l) => l.url.trim() || l.label.trim())
     .filter(Boolean);
   if (links.length) lines.push(links.join(" | "));
-  if (sections.summary) lines.push("", "SUMMARY", sections.summary);
+  if (sections.summary) lines.push("", "SUMMARY", stripInline(sections.summary));
 
   if (sections.experience.length) {
     lines.push("", "EXPERIENCE");
     for (const e of sections.experience) {
       lines.push(`${e.role} at ${e.company} (${formatDateRange(e.startDate, e.endDate, e.current)})`);
-      for (const b of e.bullets) if (b.trim()) lines.push(`- ${b}`);
+      for (const b of e.bullets) if (b.trim()) lines.push(`- ${stripInline(b)}`);
     }
   }
 
@@ -37,8 +38,8 @@ export function resumeToPlainText(content: ResumeContent): string {
     lines.push("", "PROJECTS");
     for (const p of sections.projects) {
       lines.push(`${p.name}${p.tech.length ? ` (${p.tech.join(", ")})` : ""}`);
-      if (p.description) lines.push(p.description);
-      for (const b of p.bullets) if (b.trim()) lines.push(`- ${b}`);
+      if (p.description) lines.push(stripInline(p.description));
+      for (const b of p.bullets) if (b.trim()) lines.push(`- ${stripInline(b)}`);
     }
   }
 

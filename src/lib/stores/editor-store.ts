@@ -49,6 +49,7 @@ interface EditorState {
 
   reorderSections(fromId: SectionId, toId: SectionId): void;
   toggleSectionHidden(id: SectionId): void;
+  setSectionTitle(id: SectionId, title: string): void;
 
   updateCustomSection(id: string, patch: Partial<Omit<CustomSection, "items">>): void;
   addCustomItem(sectionId: string, item: CustomSection["items"][number]): void;
@@ -164,6 +165,12 @@ export const useEditorStore = create<EditorState>()(
         const idx = s.content.hiddenSections.indexOf(id);
         if (idx === -1) s.content.hiddenSections.push(id);
         else s.content.hiddenSections.splice(idx, 1);
+        s.saveState = "dirty";
+      }),
+    setSectionTitle: (id, title) =>
+      set((s) => {
+        if (title.trim()) s.content.sectionTitles[id] = title;
+        else delete s.content.sectionTitles[id];
         s.saveState = "dirty";
       }),
 

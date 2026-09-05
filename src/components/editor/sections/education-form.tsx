@@ -3,7 +3,8 @@
 import { Plus } from "lucide-react";
 import { useEditorStore } from "@/lib/stores/editor-store";
 import { newEducationItem } from "@/lib/schemas/resume";
-import { Field, TextareaField } from "@/components/editor/fields";
+import { Field, RichTextareaField } from "@/components/editor/fields";
+import { MonthYearField } from "@/components/editor/month-year-field";
 import { ItemCard } from "@/components/editor/item-card";
 import { SortableList } from "@/components/editor/sortable-list";
 import { Button } from "@/components/ui/button";
@@ -42,26 +43,24 @@ export function EducationForm() {
                   onChange={(e) => updateItem("education", item.id, { location: e.target.value })}
                 />
                 <div className="grid grid-cols-2 gap-2.5">
-                  <Field
+                  <MonthYearField
                     label="Start"
-                    placeholder="2019"
                     value={item.startDate}
-                    onChange={(e) => updateItem("education", item.id, { startDate: e.target.value })}
+                    onChange={(startDate) => updateItem("education", item.id, { startDate })}
                   />
-                  <Field
+                  <MonthYearField
                     label="End"
-                    placeholder="2023"
                     value={item.endDate}
-                    onChange={(e) => updateItem("education", item.id, { endDate: e.target.value })}
+                    onChange={(endDate) => updateItem("education", item.id, { endDate })}
                   />
                 </div>
               </div>
-              <TextareaField
+              <RichTextareaField
                 label="Details"
                 placeholder="GPA, honors, relevant coursework…"
                 rows={2}
                 value={item.details}
-                onChange={(e) => updateItem("education", item.id, { details: e.target.value })}
+                onChangeText={(v) => updateItem("education", item.id, { details: v })}
               />
             </ItemCard>
           ))}

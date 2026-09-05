@@ -3,6 +3,7 @@
 import { useId } from "react";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { RichTextarea } from "@/components/editor/rich-textarea";
 import { cn } from "@/lib/utils";
 
 // Single-line input that wraps and grows to show its full content.
@@ -37,6 +38,19 @@ export function Field({
         {label}
       </Label>
       <GrowInput id={id} {...props} />
+    </div>
+  );
+}
+
+export function RichTextareaField({
+  label,
+  className,
+  ...props
+}: { label: string; className?: string } & React.ComponentProps<typeof RichTextarea>) {
+  return (
+    <div className={cn("space-y-1.5", className)}>
+      <Label className="text-xs text-muted-foreground">{label}</Label>
+      <RichTextarea {...props} />
     </div>
   );
 }

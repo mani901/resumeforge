@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { useEditorStore } from "@/lib/stores/editor-store";
 import { newCertificationItem } from "@/lib/schemas/resume";
 import { Field } from "@/components/editor/fields";
+import { MonthYearField } from "@/components/editor/month-year-field";
 import { ItemCard } from "@/components/editor/item-card";
 import { SortableList } from "@/components/editor/sortable-list";
 import { Button } from "@/components/ui/button";
@@ -35,11 +36,10 @@ export function CertificationsForm() {
                   value={item.issuer}
                   onChange={(e) => updateItem("certifications", item.id, { issuer: e.target.value })}
                 />
-                <Field
+                <MonthYearField
                   label="Date"
-                  placeholder="Mar 2024"
                   value={item.date}
-                  onChange={(e) => updateItem("certifications", item.id, { date: e.target.value })}
+                  onChange={(date) => updateItem("certifications", item.id, { date })}
                 />
                 <Field
                   label="Link"

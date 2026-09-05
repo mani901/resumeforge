@@ -7,6 +7,7 @@ import {
   nonEmptyBullets,
   visibleSections,
 } from "@/templates/shared/helpers";
+import { renderInline } from "@/templates/shared/inline";
 
 export type SectionStyles = Record<
   | "section"
@@ -30,7 +31,7 @@ function Bullets({ items, styles }: { items: string[]; styles: SectionStyles }) 
   return (
     <ul className={styles.bullets}>
       {bullets.map((b, i) => (
-        <li key={i}>{b}</li>
+        <li key={i}>{renderInline(b)}</li>
       ))}
     </ul>
   );
@@ -46,6 +47,7 @@ export function StandardSection({
   styles: SectionStyles;
 }) {
   const s = content.sections;
+  const titles = { ...SECTION_TITLES, ...content.sectionTitles };
 
   const section = (title: string, key: string, children: React.ReactNode) => (
     <section key={key} className={styles.section}>
@@ -56,10 +58,10 @@ export function StandardSection({
 
   switch (id) {
     case "summary":
-      return section(SECTION_TITLES.summary, id, <p className={styles.summary}>{s.summary}</p>);
+      return section(titles.summary, id, <p className={styles.summary}>{renderInline(s.summary)}</p>);
     case "experience":
       return section(
-        SECTION_TITLES.experience,
+        titles.experience,
         id,
         s.experience.map((item) => (
           <div key={item.id} className={styles.item}>
@@ -79,7 +81,7 @@ export function StandardSection({
       );
     case "education":
       return section(
-        SECTION_TITLES.education,
+        titles.education,
         id,
         s.education.map((item) => (
           <div key={item.id} className={styles.item}>
@@ -91,13 +93,13 @@ export function StandardSection({
               </span>
               <span className={styles.itemDate}>{formatDateRange(item.startDate, item.endDate)}</span>
             </div>
-            {item.details && <p>{item.details}</p>}
+            {item.details && <p>{renderInline(item.details)}</p>}
           </div>
         ))
       );
     case "skills":
       return section(
-        SECTION_TITLES.skills,
+        titles.skills,
         id,
         s.skills.map((group) => (
           <p key={group.id} className={styles.skillRow}>
@@ -108,7 +110,7 @@ export function StandardSection({
       );
     case "projects":
       return section(
-        SECTION_TITLES.projects,
+        titles.projects,
         id,
         s.projects.map((item) => {
           const link = linkPart(item.link);
@@ -125,7 +127,7 @@ export function StandardSection({
                   </span>
                 )}
               </div>
-              {item.description && <p>{item.description}</p>}
+              {item.description && <p>{renderInline(item.description)}</p>}
               <Bullets items={item.bullets} styles={styles} />
             </div>
           );
@@ -133,7 +135,7 @@ export function StandardSection({
       );
     case "certifications":
       return section(
-        SECTION_TITLES.certifications,
+        titles.certifications,
         id,
         s.certifications.map((item) => (
           <div key={item.id} className={styles.itemHeader}>
@@ -147,7 +149,7 @@ export function StandardSection({
       );
     case "languages":
       return section(
-        SECTION_TITLES.languages,
+        titles.languages,
         id,
         <div className={styles.inlineList}>
           {s.languages.map((item) => (

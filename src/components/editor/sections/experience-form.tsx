@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { useEditorStore } from "@/lib/stores/editor-store";
 import { newExperienceItem } from "@/lib/schemas/resume";
 import { Field } from "@/components/editor/fields";
+import { MonthYearField } from "@/components/editor/month-year-field";
 import { BulletsEditor } from "@/components/editor/bullets-editor";
 import { ItemCard } from "@/components/editor/item-card";
 import { SortableList } from "@/components/editor/sortable-list";
@@ -44,18 +45,16 @@ export function ExperienceForm() {
                   onChange={(e) => updateItem("experience", item.id, { location: e.target.value })}
                 />
                 <div className="grid grid-cols-2 gap-2.5">
-                  <Field
+                  <MonthYearField
                     label="Start"
-                    placeholder="Jan 2023"
                     value={item.startDate}
-                    onChange={(e) => updateItem("experience", item.id, { startDate: e.target.value })}
+                    onChange={(startDate) => updateItem("experience", item.id, { startDate })}
                   />
-                  <Field
+                  <MonthYearField
                     label="End"
-                    placeholder="Dec 2024"
                     value={item.endDate}
                     disabled={item.current}
-                    onChange={(e) => updateItem("experience", item.id, { endDate: e.target.value })}
+                    onChange={(endDate) => updateItem("experience", item.id, { endDate })}
                   />
                 </div>
               </div>

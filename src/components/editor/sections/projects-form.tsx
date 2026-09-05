@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useEditorStore } from "@/lib/stores/editor-store";
 import { newProjectItem } from "@/lib/schemas/resume";
-import { Field, GrowInput, TextareaField } from "@/components/editor/fields";
+import { Field, GrowInput, RichTextareaField } from "@/components/editor/fields";
 import { BulletsEditor } from "@/components/editor/bullets-editor";
 import { ItemCard } from "@/components/editor/item-card";
 import { SortableList } from "@/components/editor/sortable-list";
@@ -74,11 +74,11 @@ export function ProjectsForm() {
                 </div>
               </div>
               <TechInput initial={item.tech} onCommit={(tech) => updateItem("projects", item.id, { tech })} />
-              <TextareaField
+              <RichTextareaField
                 label="Description"
                 rows={2}
                 value={item.description}
-                onChange={(e) => updateItem("projects", item.id, { description: e.target.value })}
+                onChangeText={(v) => updateItem("projects", item.id, { description: v })}
               />
               <BulletsEditor
                 bullets={item.bullets}

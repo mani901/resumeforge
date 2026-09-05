@@ -33,5 +33,10 @@ export default async function PrintResumePage({
   if (!content.success || !settings.success) notFound();
 
   const Template = getTemplate(raw.templateId).component;
-  return <Template content={content.data} settings={settings.data} mode="print" />;
+  return (
+    <>
+      <style>{`@page { size: A4; margin: ${settings.data.pageMargin}mm 0; }`}</style>
+      <Template content={content.data} settings={settings.data} mode="print" />
+    </>
+  );
 }

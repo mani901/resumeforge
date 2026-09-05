@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { Personal, TemplateSettings } from "@/lib/schemas/resume";
 import { settingsToCssVars } from "@/templates/types";
 import { contactParts, ContactText } from "@/templates/shared/helpers";
+import { renderInline } from "@/templates/shared/inline";
 import styles from "./styles.module.css";
 
 export interface CoverLetterDocProps {
@@ -30,7 +31,7 @@ export function CoverLetterDoc({ personal, settings, body, date }: CoverLetterDo
         )}
       </header>
       {date && <p className={styles.meta}>{date}</p>}
-      <div className={styles.body}>{body || "Your cover letter will appear here…"}</div>
+      <div className={styles.body}>{body ? renderInline(body) : "Your cover letter will appear here…"}</div>
     </div>
   );
 }

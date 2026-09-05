@@ -38,7 +38,7 @@ export function SectionList() {
           const { title, form: Form } = SECTION_META[id];
           return (
             <SortableItem key={id} id={id} handle>
-              <SectionPanel sectionId={id} title={title}>
+              <SectionPanel sectionId={id} title={title} renamable={id !== "custom"}>
                 <Form />
               </SectionPanel>
             </SortableItem>

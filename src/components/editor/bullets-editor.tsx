@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import { Plus, X, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { RichTextarea } from "@/components/editor/rich-textarea";
 import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
@@ -109,11 +109,11 @@ export function BulletsEditor({
           {bullets.map((bullet, i) => (
             <SortableItem key={ids[i]} id={ids[i]} handle className="flex items-start gap-1">
               <SortableHandle className="mt-2.5 shrink-0" />
-              <Textarea
+              <RichTextarea
                 value={bullet}
-                onChange={(e) => update(i, e.target.value)}
+                onChangeText={(v) => update(i, v)}
                 rows={2}
-                className="min-h-0 flex-1 resize-none text-sm"
+                className="min-h-0 resize-none"
                 placeholder="Achievement or responsibility…"
               />
               <div className="mt-1 flex shrink-0 flex-col gap-0.5">
